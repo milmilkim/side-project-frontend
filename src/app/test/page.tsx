@@ -1,12 +1,13 @@
-"use client";
+'use client';
+import { Button } from '@/components/ui/button';
 
-// import { useEffect } from "react";
-// import api from "@/api";
 const Page = () => {
-//   useEffect(() => {
-//     api.get("https://www.naver.com/");
-//   }, []);
-  return <div>hello world</div>;
+  return (
+    <div>
+      hello world
+      <Button>Click me</Button>
+    </div>
+  );
 };
 
 export default Page;
