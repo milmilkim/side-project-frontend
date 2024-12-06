@@ -6,7 +6,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 
 const Page = () => {
@@ -15,7 +14,6 @@ const Page = () => {
       <Button onClick={() => console.log('click')}>Click me</Button>
 
       <Dialog>
-        <DialogTrigger>Open</DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Are you absolutely sure?</DialogTitle>
