@@ -3,24 +3,36 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
+//   DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
 
+
+import { useModal } from '@/hooks/useModal';
 const Modal = () => {
+  const { modals, closeModal } = useModal();
+
+  const handleChange = (id: string) => {
+    closeModal(id);
+  };
+
   return (
-    <Dialog open={true}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
+    <>
+      {modals.map((modal) => (
+        <Dialog
+          key={modal.id}
+          open={modal.isOpen}
+          onOpenChange={() => handleChange(modal.id)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{modal.id}</DialogTitle>
+                {modal.component}
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      ))}
+    </>
   );
 };
 

@@ -1,29 +1,19 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
-
+import { useModal } from '@/hooks/useModal';
+import { useCallback } from 'react';
 const Page = () => {
+  const { openModal } = useModal();
+
+  const handleClickButton = useCallback(async () => {
+    const TestModal = (await import('@/components/modals/TestModal')).default;
+
+    openModal(<TestModal message={'hello world'} />, Date.now().toString());
+  }, [openModal]);
+
   return (
     <div>
-      <Button onClick={() => console.log('click')}>Click me</Button>
-
-      <Dialog>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      <Button onClick={handleClickButton}>Click me</Button>
     </div>
   );
 };
